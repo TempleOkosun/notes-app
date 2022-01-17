@@ -1,12 +1,10 @@
 import yargs from "yargs"
 import { hideBin } from 'yargs/helpers'
-import {removeNote, addNote, listNotes, getNotes} from "./notes.js";
+import {removeNote, addNote, listNotes, readNote} from "./notes.js";
 
-// const yargs = require('yargs')
-// const notes = require('./notes.js')
 
 yargs(hideBin(process.argv))
-    // Create add command
+    // Add note command
     .command(
         {
             command: 'add',
@@ -28,7 +26,7 @@ yargs(hideBin(process.argv))
             }
         }
     )
-    // Create remove command
+    // Remove note command
     .command(
         {
             command: 'remove',
@@ -45,14 +43,32 @@ yargs(hideBin(process.argv))
             }
         }
     )
-    // Create list notes command
+    // List notes command
     .command(
         {
             command: 'list',
             describe: 'list your notes',
-            handler(argv) {
-                listNotes(argv.title)
+            handler() {
+                listNotes()
             }
         }
     )
+    // Read note command
+    .command(
+        {
+            command: 'read',
+            describe: 'Read a note',
+            builder: {
+                title: {
+                    describe: 'Note title',
+                    demandOption: true,
+                    type: 'string'
+                }
+            },
+            handler(argv) {
+                readNote(argv.title)
+            }
+        }
+    )
+    .version("1.0.0")
     .parse()
