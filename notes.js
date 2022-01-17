@@ -1,6 +1,9 @@
 // Required imports
-const fs = require('fs')
-const chalk = require('chalk')
+// const fs = require('fs')
+// const chalk = require('chalk')
+
+import fs from "fs";
+import chalk from "chalk"
 
 
 // Exported functions
@@ -10,12 +13,14 @@ const getNotes = () => {
 
 const addNote = (title, body) => {
     const notes = loadNotes()
-    const duplicateNotes = notes.filter(title => notes.title === title)
+    const duplicateNotes = notes.filter((note) => note.title === title)
 
     if (duplicateNotes.length === 0) {
         notes.push(
-            {title: title,
-                body: body}
+            {
+                title: title,
+                body: body
+            }
         )
         saveNotes(notes)
         console.log(chalk.green.inverse('New note added!'))
@@ -26,11 +31,11 @@ const addNote = (title, body) => {
 
 const removeNote = (title) => {
     const notes = loadNotes()
-    const notesToKeep = notes.filter(title => notes.title !== title)
-    if (notes.length > notesToKeep){
+    const notesToKeep = notes.filter((note) => note.title !== title)
+    if (notes.length > notesToKeep) {
         console.log(chalk.green.inverse('Note removed!'))
         saveNotes(notesToKeep)
-    } else{
+    } else {
         console.log(chalk.red.inverse('No note found!'))
     }
 
@@ -52,15 +57,13 @@ const loadNotes = () => {
     } catch (e) {
         return []
     }
-
-
 }
 
 
+export { getNotes, addNote, removeNote }
 
-
-module.exports = {
-    getNotes: getNotes,
-    addNote: addNote,
-    removeNote: removeNote
-}
+// module.exports = {
+//     getNotes: getNotes,
+//     addNote: addNote,
+//     removeNote: removeNote
+// }
