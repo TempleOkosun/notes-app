@@ -1,23 +1,11 @@
 // Required imports
-// const fs = require('fs')
-// const chalk = require('chalk')
-
-import fs from "fs";
+//built-in
+import fs from "fs"
+//npm
 import chalk from "chalk"
 
 
 // Exported functions
-const readNote = (title) => {
-    const notes = loadNotes()
-    const note = notes.find(note => note.title === title)
-    if(note){
-        console.log(chalk.inverse(note.title))
-        console.log(note.body)
-    }else{
-        console.log(chalk.red.inverse("Note not found!"))
-    }
-}
-
 const addNote = (title, body) => {
     const notes = loadNotes()
     const duplicateNote = notes.find(note => note.title === title)
@@ -48,6 +36,17 @@ const removeNote = (title) => {
 
 }
 
+const readNote = (title) => {
+    const notes = loadNotes()
+    const note = notes.find(note => note.title === title)
+    if (note) {
+        console.log(chalk.inverse(note.title))
+        console.log(note.body)
+    } else {
+        console.log(chalk.red.inverse("Note not found!"))
+    }
+}
+
 const listNotes = () => {
     const notes = loadNotes()
     console.log(chalk.inverse('Your notes'))
@@ -73,4 +72,4 @@ const loadNotes = () => {
 }
 
 
-export { readNote, addNote, removeNote, listNotes }
+export {readNote, addNote, removeNote, listNotes}

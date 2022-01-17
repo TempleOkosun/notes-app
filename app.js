@@ -1,5 +1,8 @@
+// Required imports
+//npm
 import yargs from "yargs"
-import { hideBin } from 'yargs/helpers'
+import {hideBin} from 'yargs/helpers'
+//project
 import {removeNote, addNote, listNotes, readNote} from "./notes.js";
 
 
